@@ -26,5 +26,4 @@ public:
 	// for this task look at how we called the died and see if you can recreate it, to change the material
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Material", meta = (AllowPrivateAccess = "true"))
 	UMaterial* UnArmouredMaterial;
-
 };

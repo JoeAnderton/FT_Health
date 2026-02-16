@@ -58,7 +58,7 @@ Remember our BasicFoe has a body Static Mesh Component that we can access to cha
 Ether way you will need to add a function to the Armoured Foe that will change the material of the body mesh to the unarmoured material when called, you must first do this in the header file:
 ```
 // function to change material when armour is broken
-UFUNCTION()
+UFUNCTION() // if the function is not a UFUNCTION the delagte cannot call it
 void ArmourBroken();
 ```
 Then implement the function in the CPP file:
@@ -68,6 +68,20 @@ void AArmouredFoe::ArmourBroken()
 	if (UnArmouredMaterial)
 	{
 		Body->SetMaterial(0, UnArmouredMaterial);
+	}
+}
+``` 
+
+Check the basic foe on how to set the Delegate up, you will have to cast the Health to an ArmouredHealth in the BeginPlay of the armoured foe like so:
+
+```
+void AArmouredFoe::BeginPlay()
+{
+	Super::BeginPlay();
+	if (Cast<UArmouredHealth>(Health))
+	{
+		Cast<UArmouredHealth>(Health)->ArmourBroke.AddDynamic(this, &AArmouredFoe::ArmourBroken); // note Armour broke is my delegate name
+		UE_LOG(LogTemp, Warning, TEXT("I am Armoured Health"));
 	}
 }
 ```
