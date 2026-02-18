@@ -23,6 +23,10 @@ public:
 	// Sets default values for this pawn's properties
 	AArmouredFoe();
 
+	// function to change material when armour is broken
+	UFUNCTION() // if the function is not a UFUNCTION the delagte cannot call it
+	void ArmourBroken();
+
 	// for this task look at how we called the died and see if you can recreate it, to change the material
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Material", meta = (AllowPrivateAccess = "true"))
 	UMaterial* UnArmouredMaterial;

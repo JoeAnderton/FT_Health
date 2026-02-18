@@ -11,6 +11,11 @@
 */
 void UArmouredHealth::TakeDamage(int Damage)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Armoured Health took no damage! you might want to change that"));
-	Super::TakeDamage(Damage);
+	if (armourHealth > 0) {
+		armourHealth -= 1;
+		UE_LOG(LogTemp, Warning, TEXT("GAH!"));
+	}
+	else {
+		Super::TakeDamage(Damage);
+	}
 }

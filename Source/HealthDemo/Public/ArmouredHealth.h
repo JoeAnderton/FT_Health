@@ -11,6 +11,7 @@
  * You will need add some variables 
  * Give it a go
  */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FArmourDamaged);
 UCLASS()
 class HEALTHDEMO_API UArmouredHealth : public UHealth
 {
@@ -19,4 +20,8 @@ class HEALTHDEMO_API UArmouredHealth : public UHealth
 	public:
 		// notice i have to say this is an override
 		void TakeDamage(int Damage) override;
+		UPROPERTY(BlueprintAssignable, Category = "ArmouredHealth")
+		FArmourDamaged ArmourBroke;
+	private:
+		int armourHealth = 2;
 };
